@@ -1,4 +1,0 @@
-# FR-9.3: /verify/{scan_id} is served by the single verify.html page, which
-# reads the scan_id from window.location.pathname. 200 = rewrite (URL bar
-# keeps showing /verify/{scan_id}), not a redirect.
-/verify/*  /verify.html  200
