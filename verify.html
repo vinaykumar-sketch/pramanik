@@ -196,7 +196,7 @@
         const data = await response.json();
         renderScan(contentEl, data);
       } catch (err) {
-        contentEl.innerHTML = '<p class="state-text">Couldn\\'t reach the verification service. Check your connection and try again.</p>';
+        contentEl.innerHTML = '<p class="state-text">Could not reach the verification service. Check your connection and try again.</p>';
       }
     }
 
