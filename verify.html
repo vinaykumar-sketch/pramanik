@@ -117,6 +117,16 @@
     font-size: 15px;
   }
 
+  .counter-line {
+    color: var(--slate);
+    font-size: 12.5px;
+    margin-top: 24px;
+  }
+
+  .counter-line strong {
+    color: var(--ink-navy);
+  }
+
   .cta {
     display: inline-block;
     margin-top: 28px;
@@ -150,6 +160,8 @@
     </div>
 
     <a class="cta" href="/">About Pramanik</a>
+
+    <p id="scan-counter" class="counter-line"></p>
 
     <footer>
       &copy; 2026 Pramanik
@@ -225,6 +237,14 @@
     }
 
     loadScan();
+
+    fetch(`${BACKEND_URL}/stats`)
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById("scan-counter").innerHTML =
+          "<strong>" + data.total_scans + "</strong> verifications completed &middot; during development testing";
+      })
+      .catch(() => {});
   </script>
 </body>
 </html>

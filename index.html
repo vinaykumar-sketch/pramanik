@@ -87,6 +87,32 @@
     margin-bottom: 24px;
   }
 
+  .counter-badge {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: white;
+    border: 1px solid var(--paper-dim);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--slate);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    z-index: 10;
+  }
+
+  .counter-badge strong {
+    color: var(--ink-navy);
+  }
+
+  @media (max-width: 480px) {
+    .counter-badge {
+      position: static;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+  }
+
   .links {
     display: flex;
     gap: 12px;
@@ -150,6 +176,7 @@
 </style>
 </head>
 <body>
+  <div id="scan-counter" class="counter-badge">Loading…</div>
   <div class="wrap">
     <svg class="icon-badge" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
       <circle cx="54" cy="54" r="52" fill="white" stroke="#E6E9E7" stroke-width="1"/>
@@ -189,5 +216,16 @@
       &copy; 2026 Pramanik
     </footer>
   </div>
+  <script>
+    fetch("https://photo-authenticity-backend.onrender.com/stats")
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById("scan-counter").innerHTML =
+          "<strong>" + data.total_scans + "</strong> verifications &middot; during development testing";
+      })
+      .catch(() => {
+        document.getElementById("scan-counter").style.display = "none";
+      });
+  </script>
 </body>
 </html>
